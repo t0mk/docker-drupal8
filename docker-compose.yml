@@ -1,0 +1,29 @@
+apache:
+    image: d8-apache
+    ports:
+        - "5555:80"
+    volumes:
+        - ./www:/app
+    links:
+        - drupaldb
+    environment:
+        DB_NAME: d8
+        DB_USER: admin
+        DB_PASS: admin
+        DB_HOST: drupaldb
+
+drupaldb:
+    image: mysql:5.7
+    volumes_from:
+        - dbvolume
+    environment:
+        MYSQL_DATABASE: d8
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: admin
+
+dbvolume:
+    image: busybox
+    volumes: 
+        - /var/lib/mysql
+

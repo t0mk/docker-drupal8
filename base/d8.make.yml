@@ -1,0 +1,14 @@
+core: 8.x
+api: 2
+
+projects:
+  drupal:
+    type: core
+    version: 8.0.0-beta14
+  devel:
+    subdir: contrib
+    version: 1.x-dev
+  ds:
+    subdir: contrib
+    version: 2.0-alpha10
+

@@ -1,0 +1,16 @@
+Drupal 8 on Docker, from development to deployment
+
+
+- There are several nginx approacehs to deploy d8.
+- nginx would need at least two processes in the docker container - nginx and php-fpm. php-fpm could be a different image but would have to share a volume with the nginx container which needs to server static files straight up. Apache seems to be most convenient for simple setup - apache with mod_php only needs the drupal code tree for itself.
+- db - container, create db and grant user pass
+- generic db containers, or remake
+- repack for redeployment
+- maybe deploy to k8s
+1. install with drush make D8beta
+http://www.drush.org/en/master/make/#drush-make
+2. 
+-
+
+drush site-install --db-url=mysql://${DB_USER}:${DB_PASS}@drupaldb/${DB_NAME} --
+
