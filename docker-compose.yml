@@ -1,4 +1,4 @@
-apache:
+drupal:
     image: d8-apache
     ports:
         - "5555:80"
