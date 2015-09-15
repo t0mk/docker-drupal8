@@ -9,14 +9,14 @@
 
 ```
 cd apache
-docker build -t t0mk/d8-apache
+docker build -t t0mk/d8-apache-dev
 cd ..
 ```
 
 - bootstrap Drupal 8 in `./www/`:
 
 ```
-docker run -v `pwd`/www:/app -w /app d8-apache  drush -y make d8.make.yml
+docker run -v `pwd`/www:/app -w /app d8-apache-dev  drush -y make d8.make.yml
 ```
 
 At this point you can run `docker-compose up -d` and you will see vanilla Drupal without profile in DOCKER\_HOST:5555

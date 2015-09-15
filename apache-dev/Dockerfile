@@ -10,3 +10,4 @@ ENV PATH ${PATH}:/opt/drush/vendor/bin
 
 RUN a2enmod rewrite
 
+ADD wait-for-db.sh /wait-for-db.sh

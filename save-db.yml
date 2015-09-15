@@ -1,0 +1,8 @@
+savedb:
+  image: t0mk/s3
+  env_file: envvars
+  volumes:
+    - ./out:/out
+  external_links:
+    - "d8_drupaldb_1:drupaldb"
+  command: savesql /out/sql.tar.gz drudb
