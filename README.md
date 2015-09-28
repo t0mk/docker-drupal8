@@ -3,30 +3,25 @@
 ## Basic bootstrap
 
 - clone this repo and install Docker
-- in the reop: `cp -r base www`
-- modify `www/d8.make.yml` to newest beta
-- build the Apache image: 
+- modify `base/d8.make.yml` to newest beta
+- run init.sh (it will create ./www for webroot, build apache container, get Drupal 8, and it will install a site)
 
 ```
-cd apache
-docker build -t t0mk/d8-apache-dev
-cd ..
+./init.sh
 ```
 
-- bootstrap Drupal 8 in `./www/`:
+when everything is done, you should have the mysql container running. To put up the Apache/Drupal, do
 
 ```
-docker run -v `pwd`/www:/app -w /app d8-apache-dev  drush -y make d8.make.yml
+docker-compose up -d
 ```
 
-At this point you can run `docker-compose up -d` and you will see vanilla Drupal without profile in DOCKER\_HOST:5555
+and go to http://localhost:5555
 
-## Install a site:
+## Drupal container with burned-in code
 
-I prepared very simple script that installs a default site: `cat www/site-install.sh`
-
-As `drush site-install` is touching the database too, you need to have the whole setup ready. Just run it with docker-compose:
+The Drupal container mounts host volume by default. If you want to create a container with burned-in code, run in the root of this repo:
 
 ```
-docker-compose run drupal ./site-install.sh
+docker build -t t0mk/d8burnedin ./
 ```
